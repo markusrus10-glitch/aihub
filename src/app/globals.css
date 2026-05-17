@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@theme {
+  /* Светлая тема (по умолчанию) */
+  --color-background: #ffffff;
+  --color-foreground: #09090b;
+  --color-card: #f8f8f8;
+  --color-card-foreground: #09090b;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #09090b;
+  --color-primary: #6366f1;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #0f172a;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #6366f1;
+  --radius: 0.5rem;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Тёмная тема */
+.dark {
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-card: #18181b;
+  --color-card-foreground: #fafafa;
+  --color-popover: #18181b;
+  --color-popover-foreground: #fafafa;
+  --color-primary: #6366f1;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #27272a;
+  --color-secondary-foreground: #fafafa;
+  --color-muted: #27272a;
+  --color-muted-foreground: #a1a1aa;
+  --color-accent: #27272a;
+  --color-accent-foreground: #fafafa;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+  --color-border: #27272a;
+  --color-input: #27272a;
+  --color-ring: #6366f1;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+}
+
+/* ── Тёмная тема: переопределяем хардкод-цвета компонентов ── */
+.dark aside,
+.dark header {
+  background-color: #18181b !important;
+  border-color: #27272a !important;
+}
+
+.dark aside * {
+  --tw-border-opacity: 1;
+}
+
+/* Сайдбар */
+.dark aside .bg-white,
+.dark aside [style*="background-color: #fff"],
+.dark aside [style*="background-color: white"],
+.dark aside [style*="backgroundColor: \"#fff\""] {
+  background-color: #27272a !important;
+}
+
+/* Фоновые точки — дашборд */
+.dark [style*="#f0f0f0"] {
+  background-color: #0f0f12 !important;
+}
+.dark [style*="#d0d0d0"] {
+  background-color: transparent !important;
+}
+
+/* Белые карточки */
+.dark .bg-white {
+  background-color: #18181b !important;
+}
+
+/* Тексты */
+.dark .text-gray-900 { color: #fafafa !important; }
+.dark .text-gray-800 { color: #e4e4e7 !important; }
+.dark .text-gray-700 { color: #d4d4d8 !important; }
+.dark .text-gray-600 { color: #a1a1aa !important; }
+.dark .text-gray-500 { color: #71717a !important; }
+.dark .text-gray-400 { color: #52525b !important; }
+.dark .text-gray-300 { color: #3f3f46 !important; }
+
+/* Бордеры */
+.dark .border-gray-100 { border-color: #27272a !important; }
+.dark .border-gray-200 { border-color: #3f3f46 !important; }
+
+/* Hover состояния */
+.dark .hover\:bg-gray-50:hover { background-color: #27272a !important; }
+.dark .hover\:bg-gray-100:hover { background-color: #3f3f46 !important; }
+.dark .bg-gray-50 { background-color: #1c1c1f !important; }
+.dark .bg-gray-100 { background-color: #27272a !important; }
+
+/* Инлайн белые блоки */
+.dark [style*="background-color: white"],
+.dark [style*="backgroundColor: white"] {
+  background-color: #18181b !important;
+}
+
+/* Поля ввода */
+.dark textarea,
+.dark input {
+  background-color: #18181b !important;
+  color: #fafafa !important;
+  border-color: #3f3f46 !important;
+}
+.dark textarea::placeholder,
+.dark input::placeholder {
+  color: #52525b !important;
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .glass {
+    background: rgba(24, 24, 27, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .animate-cursor {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .prose-dark {
+    color: #374151;
+  }
+
+  .dark .prose-dark {
+    color: #e4e4e7;
+  }
+
+  .prose-dark h1, .prose-dark h2, .prose-dark h3,
+  .prose-dark h4, .prose-dark h5, .prose-dark h6 {
+    color: #111827;
+  }
+
+  .dark .prose-dark h1, .dark .prose-dark h2, .dark .prose-dark h3,
+  .dark .prose-dark h4, .dark .prose-dark h5, .dark .prose-dark h6 {
+    color: #fafafa;
+  }
+
+  .prose-dark code {
+    color: #7c3aed;
+    background: #f1f5f9;
+    padding: 0.1em 0.3em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .dark .prose-dark code {
+    color: #a78bfa;
+    background: #27272a;
+  }
+
+  .prose-dark pre {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .dark .prose-dark pre {
+    background: #18181b;
+    border-color: #3f3f46;
+  }
+
+  .prose-dark a {
+    color: #6366f1;
+    text-decoration: underline;
+  }
+
+  .prose-dark blockquote {
+    border-left: 3px solid #6366f1;
+    padding-left: 1rem;
+    color: #6b7280;
+    margin: 1rem 0;
+  }
+
+  .prose-dark table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .prose-dark th, .prose-dark td {
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .dark .prose-dark th, .dark .prose-dark td {
+    border-color: #3f3f46;
+  }
+
+  .prose-dark th {
+    background: #f8fafc;
+    font-weight: 600;
+  }
+
+  .dark .prose-dark th {
+    background: #27272a;
+  }
+}
