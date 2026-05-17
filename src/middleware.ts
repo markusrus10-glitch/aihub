@@ -52,6 +52,11 @@ export default auth((req) => {
     (p) => path === p || path.startsWith(p + "/")
   );
 
+  // Залогиненных с главной страницы кидаем в дашборд
+  if (isLoggedIn && path === "/") {
+    return NextResponse.redirect(new URL("/chat", req.nextUrl));
+  }
+
   // Вошедших пользователей не пускаем на страницы входа/регистрации
   if (isLoggedIn && isAuthOnly) {
     return NextResponse.redirect(new URL("/chat", req.nextUrl));
