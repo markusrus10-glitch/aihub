@@ -32,7 +32,7 @@ export function LandingHero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register">
+            <Link href="/login">
               <Button size="lg" className="gap-2 px-8 text-base h-12">
                 <Sparkles className="h-5 w-5" />
                 Начать бесплатно

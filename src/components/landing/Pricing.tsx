@@ -84,7 +84,7 @@ export function LandingPricing() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/register">
+                  <Link href="/login">
                     <Button className="w-full" variant={plan.popular ? "default" : "outline"}>
                       {plan.price === 0 ? "Начать бесплатно" : `Выбрать ${plan.name}`}
                     </Button>

@@ -38,7 +38,7 @@ export function LandingNavbar() {
           <Link href="/login">
             <Button variant="ghost" size="sm">Войти</Button>
           </Link>
-          <Link href="/register">
+          <Link href="/login">
             <Button size="sm" className="gap-2">
               <Sparkles className="h-4 w-4" />
               Начать бесплатно
