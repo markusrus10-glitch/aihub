@@ -28,6 +28,7 @@ export default auth((req) => {
     path.startsWith("/api/auth") ||
     path.startsWith("/api/health") ||
     path.startsWith("/api/billing/webhook") ||
+    path.startsWith("/api/billing/yookassa/webhook") ||
     path.startsWith("/shared/") ||
     path.startsWith("/api/chat/shared/") ||
     path.includes("favicon") ||

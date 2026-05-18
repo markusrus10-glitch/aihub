@@ -62,7 +62,19 @@ export function PricingModal({ onClose }: Props) {
   async function handleBuy() {
     setLoading(true);
     try {
-      toast.success("Оплата скоро будет доступна! Пока тестовый режим 🎉");
+      const res = await fetch("/api/billing/yookassa/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: selected }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        toast.error(data.error ?? "Ошибка оплаты");
+      }
+    } catch {
+      toast.error("Ошибка соединения");
     } finally {
       setLoading(false);
     }
