@@ -60,6 +60,25 @@ export async function POST(req: NextRequest) {
       },
       capture: true,
       description: planData.description,
+      // Чек для 54-ФЗ
+      receipt: {
+        customer: {
+          email: session.user.email,
+        },
+        items: [
+          {
+            description: planData.description,
+            quantity: "1.00",
+            amount: {
+              value: planData.amount,
+              currency: "RUB",
+            },
+            vat_code: 1,           // без НДС
+            payment_mode: "full_payment",
+            payment_subject: "service",
+          },
+        ],
+      },
       metadata: {
         userId: session.user.id,
         plan,
