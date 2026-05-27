@@ -8,6 +8,7 @@ import { db } from "@/lib/db/client";
 
 export const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(db),
+  trustHost: true,
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,  // 30 дней
@@ -15,9 +16,7 @@ export const authConfig: NextAuthConfig = {
   },
   cookies: {
     sessionToken: {
-      name: process.env.NODE_ENV === "production"
-        ? "__Secure-authjs.session-token"
-        : "authjs.session-token",
+      name: "authjs.session-token",
       options: {
         httpOnly: true,
         sameSite: "lax",

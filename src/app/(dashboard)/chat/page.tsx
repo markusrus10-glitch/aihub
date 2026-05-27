@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 import { ModelSelector } from "@/components/chat/ModelSelector";
 import { TemplateView } from "@/components/templates/TemplateView";
 import { IMAGE_TEMPLATES, type ImageTemplate } from "@/lib/constants/templates";
@@ -80,8 +81,21 @@ type Mode = "text" | "image" | "video";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const searchParams = useSearchParams();
+  const { data: session, update } = useSession();
   const [mode, setMode] = useState<Mode>("text");
+
+  // Показываем тост при успешной оплате
+  useEffect(() => {
+    if (searchParams.get("payment") === "success") {
+      toast.success("🎉 Оплата прошла успешно! Подписка активирована.");
+      // Обновляем сессию чтобы получить новый planTier
+      update();
+      // Убираем query-параметр из URL
+      router.replace("/chat");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [prompt, setPrompt] = useState("");
   const [selectedModel, setSelectedModel] = useState("openai/gpt-4o-mini");
   const [loading, setLoading] = useState(false);
